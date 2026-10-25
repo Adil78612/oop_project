@@ -1,0 +1,10 @@
+# compiled binaries
+*.exe
+*.o
+
+# local backups
+main_working_backup*.cpp
+*_backup*.cpp
+
+# the standalone demo (not part of the game)
+gun_demo.cpp
