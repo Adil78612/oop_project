@@ -1,14 +1,13 @@
 #include "Player.h"
-
 #include "Constants.h"
 
-Player::Player(Vector2 p) : Entity(p, PLAYER_SPEED) {}
+Player::Player(sf::Vector2f p) : Entity(p, PLAYER_SPEED) {}
 
 void Player::update(float dt) {
-    if (IsKeyDown(KEY_W)) pos.y -= speed * dt;
-    if (IsKeyDown(KEY_S)) pos.y += speed * dt;
-    if (IsKeyDown(KEY_A)) pos.x -= speed * dt;
-    if (IsKeyDown(KEY_D)) pos.x += speed * dt;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) pos.y -= speed * dt;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) pos.y += speed * dt;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) pos.x -= speed * dt;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) pos.x += speed * dt;
 
     if (pos.x < 0) pos.x = 0;
     if (pos.x > MAP_SIZE - PLAYER_SIZE) pos.x = MAP_SIZE - PLAYER_SIZE;
@@ -16,6 +15,9 @@ void Player::update(float dt) {
     if (pos.y > MAP_SIZE - PLAYER_SIZE) pos.y = MAP_SIZE - PLAYER_SIZE;
 }
 
-void Player::render() const {
-    DrawRectangle((int)pos.x, (int)pos.y, PLAYER_SIZE, PLAYER_SIZE, BLUE);
+void Player::render(sf::RenderWindow& window) const {
+    sf::RectangleShape shape(sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE));
+    shape.setPosition(pos);
+    shape.setFillColor(sf::Color::Blue);
+    window.draw(shape);
 }
