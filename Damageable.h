@@ -1,6 +1,6 @@
 #pragma once
 
-#include "raylib.h"
+#include <SFML/Graphics.hpp>
 #include "Entity.h"
 
 // An Entity with health. Combat code targets Damageable so it handles
@@ -10,7 +10,7 @@ protected:
     int health;
 
 public:
-    Damageable(Vector2 p, float s, int hp) : Entity(p, s), health(hp) {}
+    Damageable(sf::Vector2f p, float s, int hp) : Entity(p, s), health(hp) {}
 
     int  getHealth() const { return health; }
     void takeDamage(int amount) { health -= amount; }

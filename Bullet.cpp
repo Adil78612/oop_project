@@ -2,14 +2,17 @@
 
 #include "Constants.h"
 
-Bullet::Bullet(Vector2 p, Vector2 vel, int dmg)
+Bullet::Bullet(sf::Vector2f p, sf::Vector2f vel, int dmg)
     : Entity(p, 0.0f), velocity(vel), damage(dmg) {}
-
+    
 void Bullet::update(float dt) {
     pos.x += velocity.x * dt;
     pos.y += velocity.y * dt;
 }
 
-void Bullet::render() const {
-    DrawCircle((int)pos.x, (int)pos.y, BULLET_RADIUS, BLACK);
+void Bullet::render(sf::RenderWindow& window) const {
+    sf::CircleShape shape(BULLET_RADIUS);
+    shape.setPosition(pos);
+    shape.setFillColor(sf::Color::Black);
+    window.draw(shape);
 }
